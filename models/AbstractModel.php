@@ -7,6 +7,11 @@ namespace bryglen\kairos\models;
 
 abstract class AbstractModel
 {
+    public function isSuccess()
+    {
+
+    }
+
     /**
      * Returns the list of attribute names.
      * By default, this method returns all public non-static properties of the class.
