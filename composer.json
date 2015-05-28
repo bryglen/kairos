@@ -1,0 +1,21 @@
+{
+    "name": "bryglen/kairos",
+    "description": "Kairos Facial Recognition PHP SDK",
+    "type": "kairos",
+    "keywords": ["kairos", "facial recognition", "php"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bryan Tan",
+            "email": "bryantan16@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "~3.8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "bryglen\\kairos\\": ""
+        }
+    }
+}
