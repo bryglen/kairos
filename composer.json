@@ -4,6 +4,7 @@
     "type": "kairos",
     "keywords": ["kairos", "facial recognition", "php"],
     "license": "MIT",
+    "version": "1.0.0",
     "authors": [
         {
             "name": "Bryan Tan",
