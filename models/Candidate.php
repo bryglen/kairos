@@ -5,7 +5,7 @@
 
 namespace bryglen\kairos\models;
 
-class Candidate
+class Candidate extends AbstractModel
 {
     public $name;
     public $enrollment_timestamp;

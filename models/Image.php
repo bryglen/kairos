@@ -15,5 +15,5 @@ class Image extends AbstractModel
 
     public $face = [];
     public $transaction;
-    public $imageAttributes = [];
+    public $attributes = [];
 }

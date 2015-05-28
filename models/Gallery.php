@@ -5,9 +5,9 @@
 
 namespace bryglen\kairos\models;
 
-class Gallery
+class Gallery extends AbstractModel
 {
     public $time;
     public $status;
-    public $gallery_names;
+    public $gallery_names = [];
 } 

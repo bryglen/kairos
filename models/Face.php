@@ -63,5 +63,5 @@ class Face extends AbstractModel
     public $yaw;
     public $roll;
 
-    public $attributes;
+    public $attributes = [];
 } 

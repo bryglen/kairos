@@ -3,12 +3,13 @@
  * @author Bryan Tan <bryantan16@gmail.com>
  */
 
-namespace bryglen\commands;
+namespace bryglen\kairos\commands;
 
 use Guzzle\Http\Client;
 
 class BaseCommand
 {
+    public $rawResponse;
     private $_client;
 
     public function __construct(Client $client)

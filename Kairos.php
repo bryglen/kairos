@@ -5,9 +5,9 @@
 
 namespace bryglen\kairos;
 
-use bryglen\commands\Detect;
-use bryglen\commands\Enroll;
-use bryglen\commands\Recognize;
+use bryglen\kairos\commands\Detect;
+use bryglen\kairos\commands\Enroll;
+use bryglen\kairos\commands\Recognize;
 use Guzzle\Http\Client;
 
 class Kairos
@@ -43,8 +43,12 @@ class Kairos
     {
         if ($this->_client === null) {
             $this->_client = new Client($this->hostname, [
-                'app_id' => $this->appId,
-                'app_key' => $this->appKey
+                "request.options" => array(
+                    "headers" => [
+                        'app_id' => $this->appId,
+                        'app_key' => $this->appKey
+                    ]
+                )
             ]);
         }
 

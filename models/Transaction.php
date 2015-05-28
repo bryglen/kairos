@@ -5,7 +5,7 @@
 
 namespace bryglen\kairos\models;
 
-class Transaction
+class Transaction extends AbstractModel
 {
     public $status;
     public $face_id;

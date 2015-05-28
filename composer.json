@@ -15,7 +15,9 @@
     },
     "autoload": {
         "psr-4": {
-            "bryglen\\kairos\\": ""
+            "bryglen\\kairos\\": "",
+            "bryglen\\kairos\\models\\": "models",
+            "bryglen\\kairos\\commands\\": "commands"
         }
     }
 }

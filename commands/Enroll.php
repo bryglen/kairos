@@ -3,7 +3,7 @@
  * @author Bryan Tan <bryantan16@gmail.com>
  */
 
-namespace bryglen\commands;
+namespace bryglen\kairos\commands;
 
 use bryglen\kairos\models\Gender;
 use bryglen\kairos\models\Image;
@@ -11,13 +11,15 @@ use bryglen\kairos\models\Transaction;
 
 class Enroll extends BaseCommand
 {
-    public function post($image, $gallery_name, $subject_id, $options = array())
+    public function post($image, $gallery_name, $subject_id, $options = [])
     {
-        $options['image'] = $image;
-        $options['subject_id'] = $subject_id;
-        $options['gallery_name'] = $gallery_name;
-        $response = $this->getClient()->post('enroll', null, $options)->send();
-        return $this->populateResponse($response);
+        $body = $options;
+        $body['image'] = $image;
+        $body['subject_id'] = $subject_id;
+        $body['gallery_name'] = $gallery_name;
+
+        $this->rawResponse = $this->getClient()->post('enroll', null, json_encode($body))->send();
+        return $this->populateResponse($this->rawResponse->getBody());
     }
 
     public function populateResponse($response)
@@ -26,26 +28,26 @@ class Enroll extends BaseCommand
             return null;
         }
         $responseArrays = json_decode($response, 1);
-        $imagesResponse = isset($responseArrays['images']) ? $responseArrays['images'] : [];
+        $imageArrays = isset($responseArrays['images']) ? $responseArrays['images'] : [];
 
         $images = [];
-        foreach ($imagesResponse as $imageResponse) {
+        foreach ($imageArrays as $imageArray) {
             $image = new Image();
-            $image->setAttributes($imageResponse);
+            $image->setAttributes($imageArray);
 
             $transaction = new Transaction();
-            $transaction->attributes = isset($imageResponse['transaction']) ? $imageResponse['transaction'] : [];
+            $transaction->setAttributes(isset($imageArray['transaction']) ? $imageArray['transaction'] : []);
 
             $gender = null;
-            if (isset($imageResponse['attributes']['gender'])) {
+            if (isset($imageArray['attributes']['gender'])) {
                 $gender = new Gender();
-                $gender->attributes = $imageResponse['attributes']['gender'];
+                $gender->setAttributes($imageArray['attributes']['gender']);
             }
 
-            $image->imageAttributes['gender'] = $gender;
+            $image->attributes['gender'] = $gender;
             $image->transaction = $transaction;
 
-            $images = $image;
+            $images[] = $image;
         }
 
         return $images;
