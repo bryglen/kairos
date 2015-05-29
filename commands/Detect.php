@@ -20,7 +20,7 @@ class Detect extends BaseCommand
     {
         $body = $options;
         $body['image'] = $image;
-        $this->rawResponse = $this->getClient()->post('recognize', null, json_encode($body))->send();
+        $this->rawResponse = $this->getClient()->post('detect', null, json_encode($body))->send();
         return $this->populateResponse($this->rawResponse->getBody());
     }
 
