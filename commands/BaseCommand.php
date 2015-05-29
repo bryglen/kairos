@@ -5,8 +5,7 @@
 
 namespace bryglen\kairos\commands;
 
-use bryglen\kairos\handler\KairosException;
-use bryglen\kairos\handler\ResponseHandler;
+use bryglen\kairos\KairosException;
 use Guzzle\Http\Client;
 
 class BaseCommand
@@ -34,7 +33,7 @@ class BaseCommand
 
     /**
      * @param $response
-     * @throws \bryglen\kairos\handler\KairosException
+     * @throws \bryglen\kairos\KairosException
      */
     public function checkError($response)
     {
