@@ -57,6 +57,7 @@ class Detect extends BaseCommand
 
                 $faces[] = $face;
             }
+            $image->faces = $faces;
 
             $images[] = $image;
         }
