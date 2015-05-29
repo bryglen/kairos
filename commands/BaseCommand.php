@@ -5,6 +5,8 @@
 
 namespace bryglen\kairos\commands;
 
+use bryglen\kairos\handler\KairosException;
+use bryglen\kairos\handler\ResponseHandler;
 use Guzzle\Http\Client;
 
 class BaseCommand
@@ -28,5 +30,22 @@ class BaseCommand
     public function getClient()
     {
         return $this->_client;
+    }
+
+    /**
+     * @param $response
+     * @throws \bryglen\kairos\handler\KairosException
+     */
+    public function checkError($response)
+    {
+        if (isset($response['Errors'])) {
+            foreach ($response['Errors'] as $error) {
+                if (isset($error['Message']) && isset($error['ErrCode'])) {
+                    throw new KairosException($error['Message'], $error['ErrCode']);
+                } else {
+                    throw new KairosException("Unknown Error");
+                }
+            }
+        }
     }
 } 

@@ -11,6 +11,13 @@ use bryglen\kairos\models\Transaction;
 
 class Enroll extends BaseCommand
 {
+    /**
+     * @param $image
+     * @param $gallery_name
+     * @param $subject_id
+     * @param array $options
+     * @return \bryglen\kairos\models\Image[]
+     */
     public function post($image, $gallery_name, $subject_id, $options = [])
     {
         $body = $options;
@@ -22,12 +29,17 @@ class Enroll extends BaseCommand
         return $this->populateResponse($this->rawResponse->getBody());
     }
 
+    /**
+     * @param $response
+     * @return Image[]
+     */
     public function populateResponse($response)
     {
         if (!$response) {
             return null;
         }
         $responseArrays = json_decode($response, 1);
+        $this->checkError($responseArrays);
         $imageArrays = isset($responseArrays['images']) ? $responseArrays['images'] : [];
 
         $images = [];

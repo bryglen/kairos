@@ -11,6 +11,11 @@ use bryglen\kairos\models\Image;
 
 class Detect extends BaseCommand
 {
+    /**
+     * @param $image
+     * @param array $options
+     * @return Image[]
+     */
     public function post($image, $options = [])
     {
         $body = $options;
@@ -19,6 +24,10 @@ class Detect extends BaseCommand
         return $this->populateResponse($this->rawResponse->getBody());
     }
 
+    /**
+     * @param $response
+     * @return Image[]
+     */
     public function populateResponse($response)
     {
         if (!$response) {
@@ -26,6 +35,7 @@ class Detect extends BaseCommand
         }
 
         $responseArrays = json_decode($response, 1);
+        $this->checkError($responseArrays);
         $imageArrays = isset($responseArrays['images']) ? $responseArrays['images'] : [];
 
         $images = [];
