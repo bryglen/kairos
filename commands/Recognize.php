@@ -48,11 +48,13 @@ class Recognize extends BaseCommand
             $transaction = new Transaction();
             $transaction->setAttributes(isset($imageArray['transaction']) ? $imageArray['transaction'] : []);
 
-            foreach ($imageArray['candidates'] as $candidateArray) {
-                $candidate = new Candidate();
-                $candidate->setAttributes($candidateArray);
+            if (isset($imageArray['candidates'])) {
+                foreach ($imageArray['candidates'] as $candidateArray) {
+                    $candidate = new Candidate();
+                    $candidate->setAttributes($candidateArray);
+                    $image->candidates[] = $candidate;
+                }
             }
-            $image->candidates;
 
             $images[] = $image;
         }
