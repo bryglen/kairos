@@ -52,6 +52,7 @@ class Recognize extends BaseCommand
                 $candidate = new Candidate();
                 $candidate->setAttributes($candidateArray);
             }
+            $image->candidates;
 
             $images[] = $image;
         }

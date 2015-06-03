@@ -14,6 +14,7 @@ class Image extends AbstractModel
     public $height;
 
     public $faces = [];
+    public $candidates = [];
     public $transaction;
     public $attributes = [];
 
