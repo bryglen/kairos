@@ -38,9 +38,8 @@ class Detect extends BaseCommand
         $this->checkError($responseArrays);
         $imageArrays = isset($responseArrays['images']) ? $responseArrays['images'] : [];
 
-        $images = [];
+		$image = new Image();
         foreach ($imageArrays as $imageArray) {
-            $image = new Image();
             $image->setAttributes($imageArray);
 
             $faces = [];
@@ -58,10 +57,8 @@ class Detect extends BaseCommand
                 $faces[] = $face;
             }
             $image->faces = $faces;
-
-            $images[] = $image;
         }
 
-        return $images;
+        return $image;
     }
 } 

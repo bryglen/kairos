@@ -42,9 +42,8 @@ class Enroll extends BaseCommand
         $this->checkError($responseArrays);
         $imageArrays = isset($responseArrays['images']) ? $responseArrays['images'] : [];
 
-        $images = [];
+		$image = new Image();
         foreach ($imageArrays as $imageArray) {
-            $image = new Image();
             $image->setAttributes($imageArray);
 
             $transaction = new Transaction();
@@ -58,10 +57,8 @@ class Enroll extends BaseCommand
 
             $image->attributes['gender'] = $gender;
             $image->transaction = $transaction;
-
-            $images[] = $image;
         }
 
-        return $images;
+        return $image;
     }
 } 

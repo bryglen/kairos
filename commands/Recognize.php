@@ -40,9 +40,8 @@ class Recognize extends BaseCommand
         $this->checkError($responseArrays);
         $imageArrays = isset($responseArrays['images']) ? $responseArrays['images'] : [];
 
-        $images = [];
+		$image = new Image();
         foreach ($imageArrays as $imageArray) {
-            $image = new Image();
             $image->setAttributes($imageArray);
 
             $transaction = new Transaction();
@@ -55,10 +54,8 @@ class Recognize extends BaseCommand
                     $image->candidates[] = $candidate;
                 }
             }
-
-            $images[] = $image;
         }
 
-        return $images;
+        return $image;
     }
 } 
