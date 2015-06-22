@@ -15,7 +15,7 @@ class Recognize extends BaseCommand
      * @param $image
      * @param $gallery_name
      * @param array $options
-     * @return \bryglen\kairos\models\Image[]
+     * @return \bryglen\kairos\models\Image
      */
     public function post($image, $gallery_name, $options = [])
     {
@@ -28,7 +28,7 @@ class Recognize extends BaseCommand
 
     /**
      * @param $response
-     * @return Image[]
+     * @return Image
      */
     public function populateResponse($response)
     {

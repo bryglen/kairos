@@ -14,7 +14,7 @@ class Detect extends BaseCommand
     /**
      * @param $image
      * @param array $options
-     * @return Image[]
+     * @return Image
      */
     public function post($image, $options = [])
     {
@@ -26,7 +26,7 @@ class Detect extends BaseCommand
 
     /**
      * @param $response
-     * @return Image[]
+     * @return Image
      */
     public function populateResponse($response)
     {

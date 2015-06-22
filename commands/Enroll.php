@@ -16,7 +16,7 @@ class Enroll extends BaseCommand
      * @param $gallery_name
      * @param $subject_id
      * @param array $options
-     * @return \bryglen\kairos\models\Image[]
+     * @return \bryglen\kairos\models\Image
      */
     public function post($image, $gallery_name, $subject_id, $options = [])
     {
@@ -31,7 +31,7 @@ class Enroll extends BaseCommand
 
     /**
      * @param $response
-     * @return Image[]
+     * @return Image
      */
     public function populateResponse($response)
     {
